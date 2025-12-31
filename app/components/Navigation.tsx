@@ -63,7 +63,7 @@ export default function Navigation() {
       }`}
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between h-20 md:h-24">
+        <div className="flex items-center justify-between h-16 md:h-18">
           {/* Logo */}
           <div ref={logoRef} className="flex items-center gap-3">
             <div className="relative">

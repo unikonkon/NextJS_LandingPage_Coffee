@@ -53,22 +53,19 @@ export default function BrandStory() {
       statItems?.forEach((item) => {
         const target = parseInt(item.getAttribute("data-target") || "0");
         const suffix = item.getAttribute("data-suffix") || "";
+        const counter = { value: 0 };
 
-        gsap.from(item, {
-          textContent: 0,
-          duration: 2,
+        gsap.to(counter, {
+          value: target,
+          duration: 2.5,
           ease: "power2.out",
-          snap: { textContent: 1 },
           scrollTrigger: {
             trigger: item,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
+            start: "top 85%",
+            toggleActions: "play none none reset",
           },
           onUpdate: function () {
-            const current = Math.round(
-              gsap.getProperty(item, "textContent") as number
-            );
-            item.textContent = formatNumber(current) + suffix;
+            item.textContent = formatNumber(Math.round(counter.value)) + suffix;
           },
         });
       });

@@ -5,11 +5,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { products, categories, Product } from "../data/products";
 import { useCart } from "../context/CartContext";
+import ProductModal from "./ProductModal";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ProductGrid() {
   const [activeCategory, setActiveCategory] = useState("all");
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -17,6 +20,16 @@ export default function ProductGrid() {
 
   const handleAddToCart = (product: Product) => {
     addToCart(product);
+  };
+
+  const handleProductClick = (product: Product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProduct(null);
   };
 
   const filteredProducts =
@@ -157,6 +170,7 @@ export default function ProductGrid() {
           {filteredProducts.map((product) => (
             <div
               key={product.id}
+              onClick={() => handleProductClick(product)}
               className="product-card-item product-card bg-white rounded-2xl overflow-hidden cursor-pointer group"
             >
               {/* Image Container */}
@@ -240,6 +254,10 @@ export default function ProductGrid() {
                     ฿{product.price}
                   </span>
                   <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleProductClick(product);
+                    }}
                     className="p-2 text-espresso/60 hover:text-espresso transition-colors"
                     aria-label="Quick view"
                   >
@@ -284,6 +302,13 @@ export default function ProductGrid() {
           </a>
         </div> */}
       </div>
+
+      {/* Product Detail Modal */}
+      <ProductModal
+        product={selectedProduct}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </section>
   );
 }

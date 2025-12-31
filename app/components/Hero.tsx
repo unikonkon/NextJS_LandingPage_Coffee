@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { products, Product } from "../data/products";
+import ProductModal from "./ProductModal";
 
 const featuredProducts = [
   {
@@ -28,12 +30,27 @@ const featuredProducts = [
 ];
 
 export default function Hero() {
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const sublineRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const productsRef = useRef<HTMLDivElement>(null);
   const decorRef = useRef<HTMLDivElement>(null);
+
+  const handleProductClick = (productId: number) => {
+    const fullProduct = products.find((p) => p.id === productId);
+    if (fullProduct) {
+      setSelectedProduct(fullProduct);
+      setIsModalOpen(true);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProduct(null);
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -235,6 +252,7 @@ export default function Hero() {
               {featuredProducts.map((product, index) => (
                 <div
                   key={product.id}
+                  onClick={() => handleProductClick(product.id)}
                   className={`product-featured absolute cursor-pointer group ${index === 0
                     ? "z-30 left-1/2 -translate-x-1/2"
                     : index === 1
@@ -311,6 +329,13 @@ export default function Hero() {
         </span>
         <div className="w-px h-12 bg-gradient-to-b from-warm-gray to-transparent" />
       </div>
+
+      {/* Product Detail Modal */}
+      <ProductModal
+        product={selectedProduct}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </section>
   );
 }
