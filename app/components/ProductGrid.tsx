@@ -3,120 +3,21 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { products, categories, Product } from "../data/products";
+import { useCart } from "../context/CartContext";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const categories = [
-  { id: "all", name: "ทั้งหมด" },
-  { id: "single-origin", name: "Single Origin" },
-  { id: "blend", name: "Blend" },
-  { id: "specialty", name: "Specialty" },
-];
-
-const products = [
-  {
-    id: 1,
-    name: "Ethiopia Yirgacheffe",
-    category: "single-origin",
-    origin: "Ethiopia",
-    roast: "Light Roast",
-    price: 450,
-    rating: 4.9,
-    reviews: 128,
-    image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&h=600&fit=crop",
-    badge: "Best Seller",
-  },
-  {
-    id: 2,
-    name: "Colombia Supremo",
-    category: "single-origin",
-    origin: "Colombia",
-    roast: "Medium Roast",
-    price: 420,
-    rating: 4.8,
-    reviews: 96,
-    image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&h=600&fit=crop",
-    badge: "New",
-  },
-  {
-    id: 3,
-    name: "Kenya AA",
-    category: "single-origin",
-    origin: "Kenya",
-    roast: "Medium Roast",
-    price: 480,
-    rating: 4.7,
-    reviews: 84,
-    image: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=600&h=600&fit=crop",
-    badge: "Limited",
-  },
-  {
-    id: 4,
-    name: "House Blend",
-    category: "blend",
-    origin: "Multi-Origin",
-    roast: "Medium-Dark",
-    price: 380,
-    rating: 4.8,
-    reviews: 256,
-    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=600&fit=crop",
-    badge: null,
-  },
-  {
-    id: 5,
-    name: "Guatemala Antigua",
-    category: "single-origin",
-    origin: "Guatemala",
-    roast: "Medium Roast",
-    price: 440,
-    rating: 4.6,
-    reviews: 72,
-    image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&h=600&fit=crop",
-    badge: null,
-  },
-  {
-    id: 6,
-    name: "Espresso Blend",
-    category: "blend",
-    origin: "Brazil & Ethiopia",
-    roast: "Dark Roast",
-    price: 400,
-    rating: 4.9,
-    reviews: 312,
-    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&h=600&fit=crop",
-    badge: "Best Seller",
-  },
-  {
-    id: 7,
-    name: "Panama Geisha",
-    category: "specialty",
-    origin: "Panama",
-    roast: "Light Roast",
-    price: 1200,
-    rating: 5.0,
-    reviews: 48,
-    image: "https://images.unsplash.com/photo-1512568400610-62da28bc8a13?w=600&h=600&fit=crop",
-    badge: "Premium",
-  },
-  {
-    id: 8,
-    name: "Brazil Santos",
-    category: "single-origin",
-    origin: "Brazil",
-    roast: "Medium Roast",
-    price: 360,
-    rating: 4.5,
-    reviews: 184,
-    image: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=600&h=600&fit=crop",
-    badge: null,
-  },
-];
 
 export default function ProductGrid() {
   const [activeCategory, setActiveCategory] = useState("all");
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
+  const { addToCart } = useCart();
+
+  const handleAddToCart = (product: Product) => {
+    addToCart(product);
+  };
 
   const filteredProducts =
     activeCategory === "all"
@@ -163,7 +64,7 @@ export default function ProductGrid() {
             opacity: 1,
             y: 0,
             scale: 1,
-            duration: 0.8,
+            duration: 0.1,
             stagger: 0.1,
             ease: "power3.out",
           }
@@ -180,8 +81,7 @@ export default function ProductGrid() {
     gsap.to(cards || [], {
       opacity: 0,
       y: 20,
-      duration: 0.3,
-      stagger: 0.05,
+      duration: 0.1,
       onComplete: () => {
         setActiveCategory(categoryId);
       },
@@ -306,8 +206,14 @@ export default function ProductGrid() {
                 />
 
                 {/* Quick Add Overlay */}
-                <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-espresso/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                  <button className="w-full py-2.5 bg-cream text-espresso font-body text-sm font-medium rounded-lg hover:bg-white transition-colors">
+                <div className="absolute inset-x-0 bottom-0 p-3 bg-linear-to-t from-espresso/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddToCart(product);
+                    }}
+                    className="w-full py-2.5 bg-cream text-espresso font-body text-sm font-medium rounded-lg hover:bg-white transition-colors"
+                  >
                     + เพิ่มลงตะกร้า
                   </button>
                 </div>
@@ -356,7 +262,7 @@ export default function ProductGrid() {
         </div>
 
         {/* View All Button */}
-        <div className="mt-12 text-center">
+        {/* <div className="mt-12 text-center">
           <a
             href="#"
             className="inline-flex items-center gap-3 px-8 py-4 border border-espresso text-espresso font-body text-sm tracking-wide rounded-full hover:bg-espresso hover:text-cream transition-all duration-300"
@@ -376,7 +282,7 @@ export default function ProductGrid() {
               <polyline points="12 5 19 12 12 19" />
             </svg>
           </a>
-        </div>
+        </div> */}
       </div>
     </section>
   );

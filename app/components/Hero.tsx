@@ -131,7 +131,7 @@ export default function Hero() {
         <div className="decor-element absolute bottom-20 right-10 w-20 h-20 rounded-full bg-deep-brown/5" />
 
         {/* Coffee bean decorations */}
-        <div className="absolute top-32 right-20 opacity-10">
+        <div className="absolute top-32 right-20 opacity-10 rotate-20">
           <svg width="60" height="80" viewBox="0 0 60 80" fill="currentColor" className="text-deep-brown">
             <ellipse cx="30" cy="40" rx="25" ry="35" />
             <path d="M30 10 Q 30 40 30 70" stroke="#FAF7F2" strokeWidth="3" fill="none" />
@@ -148,10 +148,10 @@ export default function Hero() {
       <div className="container-custom relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           {/* Left Side - Hero Content */}
-          <div className="order-2 lg:order-1">
+          <div className="order-2 lg:order-1 pr-10">
             <h1
               ref={headlineRef}
-              className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-espresso leading-[1.05] tracking-tight"
+              className="font-heading text-5xl sm:text-5xl md:text-6xl lg:text-7xl text-espresso leading-[1.05] tracking-tight"
             >
               กาแฟคุณภาพ
               <br />
@@ -230,44 +230,40 @@ export default function Hero() {
           </div>
 
           {/* Right Side - Featured Products */}
-          <div ref={productsRef} className="order-1 lg:order-2 relative">
+          <div ref={productsRef} className="order-1 lg:order-2 relative hidden lg:block">
             <div className="relative h-[500px] md:h-[600px] flex items-center justify-center">
               {featuredProducts.map((product, index) => (
                 <div
                   key={product.id}
-                  className={`product-featured absolute cursor-pointer group ${
-                    index === 0
-                      ? "z-30 left-1/2 -translate-x-1/2"
-                      : index === 1
-                      ? "z-20 left-0 md:left-8 top-20"
+                  className={`product-featured absolute cursor-pointer group ${index === 0
+                    ? "z-30 left-1/2 -translate-x-1/2"
+                    : index === 1
+                      ? "z-20 left-0 md:left-118 top-20"
                       : "z-10 right-0 md:right-8 bottom-16"
-                  }`}
+                    }`}
                   style={{
-                    transform: `${
-                      index === 0
-                        ? "translateX(-50%)"
-                        : index === 1
-                        ? "rotate(-8deg)"
+                    transform: `${index === 0
+                      ? "translateX(-50%)"
+                      : index === 1
+                        ? "rotate(-4deg)"
                         : "rotate(8deg)"
-                    }`,
+                      }`,
                   }}
                 >
                   <div
-                    className={`relative bg-white rounded-3xl shadow-[0_20px_50px_rgba(44,24,16,0.12)] overflow-hidden transition-all duration-500 group-hover:shadow-[0_30px_60px_rgba(44,24,16,0.2)] ${
-                      index === 0 ? "w-64 md:w-72" : "w-48 md:w-56"
-                    }`}
+                    className={`relative bg-white rounded-3xl shadow-[0_20px_50px_rgba(44,24,16,0.12)] overflow-hidden transition-all duration-500 group-hover:shadow-[0_30px_60px_rgba(44,24,16,0.2)] ${index === 0 ? "w-64 md:w-72" : "w-48 md:w-56"
+                      }`}
                   >
                     {/* Badge */}
                     {product.badge && (
                       <div className="absolute top-4 left-4 z-10">
                         <span
-                          className={`px-3 py-1.5 text-xs font-body font-medium rounded-full ${
-                            product.badge === "Best Seller"
-                              ? "bg-gold text-espresso"
-                              : product.badge === "New"
+                          className={`px-3 py-1.5 text-xs font-body font-medium rounded-full ${product.badge === "Best Seller"
+                            ? "bg-gold text-espresso"
+                            : product.badge === "New"
                               ? "bg-espresso text-cream"
                               : "bg-deep-brown text-cream"
-                          }`}
+                            }`}
                         >
                           {product.badge}
                         </span>

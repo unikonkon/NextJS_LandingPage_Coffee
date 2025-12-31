@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans, Noto_Sans_Thai } from "next/font/google";
+import { CartProvider } from "./context/CartContext";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -12,6 +13,13 @@ const cormorant = Cormorant_Garamond({
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+const notoSansThai = Noto_Sans_Thai({
+  variable: "--font-noto-sans-thai",
+  subsets: ["thai"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
@@ -29,9 +37,9 @@ export default function RootLayout({
   return (
     <html lang="th">
       <body
-        className={`${cormorant.variable} ${dmSans.variable} antialiased`}
+        className={`${cormorant.variable} ${dmSans.variable} ${notoSansThai.variable} antialiased`}
       >
-        {children}
+        <CartProvider>{children}</CartProvider>
       </body>
     </html>
   );

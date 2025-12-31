@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
 import gsap from "gsap";
+import { useCart } from "../context/CartContext";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [cartCount] = useState(2);
+  const { totalItems } = useCart();
   const navRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
@@ -134,7 +136,7 @@ export default function Navigation() {
           {/* Icons */}
           <div className="flex items-center gap-4 md:gap-6">
             {/* Search */}
-            <button
+            {/* <button
               className="p-2 text-espresso/70 hover:text-espresso transition-colors duration-300"
               aria-label="ค้นหา"
             >
@@ -151,10 +153,11 @@ export default function Navigation() {
                 <circle cx="11" cy="11" r="8" />
                 <path d="M21 21l-4.35-4.35" />
               </svg>
-            </button>
+            </button> */}
 
             {/* Cart */}
-            <button
+            <Link
+              href="/cart"
               className="relative p-2 text-espresso/70 hover:text-espresso transition-colors duration-300"
               aria-label="ตะกร้าสินค้า"
             >
@@ -172,12 +175,12 @@ export default function Navigation() {
                 <line x1="3" y1="6" x2="21" y2="6" />
                 <path d="M16 10a4 4 0 01-8 0" />
               </svg>
-              {cartCount > 0 && (
+              {totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 w-5 h-5 bg-latte text-espresso text-xs font-medium rounded-full flex items-center justify-center">
-                  {cartCount}
+                  {totalItems}
                 </span>
               )}
-            </button>
+            </Link>
 
             {/* Mobile Menu Toggle */}
             <button
