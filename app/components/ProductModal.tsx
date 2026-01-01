@@ -123,19 +123,18 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
 
         <div className="grid md:grid-cols-2">
           {/* Image */}
-          <div className="relative aspect-square md:aspect-auto md:h-full">
+          <div className="relative h-52 md:h-auto md:aspect-square">
             {product.badge && (
               <div className="absolute top-4 left-4 z-10">
                 <span
-                  className={`px-3 py-1.5 text-xs font-body font-medium rounded-full ${
-                    product.badge === "Best Seller"
-                      ? "bg-gold text-espresso"
-                      : product.badge === "New"
+                  className={`px-3 py-1.5 text-xs font-body font-medium rounded-full ${product.badge === "Best Seller"
+                    ? "bg-gold text-espresso"
+                    : product.badge === "New"
                       ? "bg-espresso text-cream"
                       : product.badge === "Limited"
-                      ? "bg-deep-brown text-cream"
-                      : "bg-latte text-espresso"
-                  }`}
+                        ? "bg-deep-brown text-cream"
+                        : "bg-latte text-espresso"
+                    }`}
                 >
                   {product.badge}
                 </span>
@@ -158,18 +157,23 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                 <span>{product.roast}</span>
               </div>
 
-              {/* Name */}
-              <h2 className="font-heading text-3xl md:text-4xl text-espresso mb-3">
-                {product.name}
-              </h2>
+              {/* Name & Price (mobile) */}
+              <div className="flex items-start justify-between gap-4 mb-3">
+                <h2 className="font-heading text-2xl md:text-4xl text-espresso">
+                  {product.name}
+                </h2>
+                <span className="font-heading text-xl md:hidden text-latte whitespace-nowrap">
+                  ฿{product.price}
+                </span>
+              </div>
 
               {/* Rating */}
               <div className="mb-4">
                 {renderStars(product.rating)}
               </div>
 
-              {/* Price */}
-              <div className="mb-6">
+              {/* Price (desktop) */}
+              <div className="mb-6 hidden md:block">
                 <span className="font-heading text-3xl text-latte">
                   ฿{product.price}
                 </span>
@@ -186,8 +190,8 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                   {product.roast === "Light Roast"
                     ? "เปรี้ยวนุ่มนวลพร้อมกลิ่นหอมผลไม้"
                     : product.roast === "Dark Roast"
-                    ? "เข้มข้นหนักแน่นพร้อมกลิ่นหอมช็อคโกแลต"
-                    : "สมดุลกลมกล่อมพร้อมกลิ่นหอมถั่ว"}
+                      ? "เข้มข้นหนักแน่นพร้อมกลิ่นหอมช็อคโกแลต"
+                      : "สมดุลกลมกล่อมพร้อมกลิ่นหอมถั่ว"}
                 </p>
               </div>
 
