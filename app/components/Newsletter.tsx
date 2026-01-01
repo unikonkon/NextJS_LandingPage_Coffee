@@ -78,7 +78,7 @@ export default function Newsletter() {
         <div className="absolute -bottom-20 -right-20 w-80 h-80 rounded-full bg-espresso/20 blur-[80px]" />
 
         {/* Coffee bean decorations */}
-        <div className="absolute top-10 right-[20%] opacity-20 animate-float">
+        <div className="absolute top-10 right-[20%] opacity-20 animate-float rotate-15">
           <svg
             width="40"
             height="55"
@@ -138,9 +138,9 @@ export default function Newsletter() {
           </div>
 
           {/* Headline */}
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl text-espresso leading-tight">
+          <p className="font-body text-5xl md:text-6xl lg:text-7xl text-espresso leading-tight">
             รับส่วนลด 10%
-          </h2>
+          </p>
           <p className="mt-4 font-body text-lg text-espresso/80 max-w-lg mx-auto">
             สมัครรับข่าวสารและโปรโมชั่นพิเศษก่อนใคร
             พร้อมรับส่วนลด 10% สำหรับการสั่งซื้อครั้งแรก

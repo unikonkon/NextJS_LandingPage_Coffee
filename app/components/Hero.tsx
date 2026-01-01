@@ -264,7 +264,7 @@ export default function Hero() {
                       ? "translateX(-50%)"
                       : index === 1
                         ? "rotate(-4deg)"
-                        : "rotate(5deg)"
+                        : "rotate(4deg)"
                       }`,
                   }}
                 >

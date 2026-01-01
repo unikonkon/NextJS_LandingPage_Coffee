@@ -252,7 +252,7 @@ export default function BestSeller() {
             {/* Price & CTA */}
             <div className="content-item mt-10 flex items-center gap-6">
               <div>
-                <span className="font-heading text-4xl text-espresso">฿450</span>
+                <span className="text-4xl text-espresso">฿450</span>
                 <span className="ml-2 font-body text-warm-gray text-sm">/ 250g</span>
               </div>
               <button className="btn-coffee flex-1 py-4 bg-espresso text-cream font-body text-sm tracking-wide rounded-full hover:bg-deep-brown transition-colors">

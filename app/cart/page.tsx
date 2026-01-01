@@ -152,7 +152,7 @@ export default function CartPage() {
                       <span className="font-body text-lg text-espresso">
                         รวมทั้งหมด
                       </span>
-                      <span className="font-heading text-2xl text-latte">
+                      <span className="font-espresso text-2xl text-latte">
                         ฿{totalPrice.toLocaleString()}
                       </span>
                     </div>
