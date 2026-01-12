@@ -289,13 +289,13 @@ export default function Hero() {
                     )}
 
                     {/* Image */}
-                    <div className="relative aspect-[4/5] overflow-hidden">
+                    <div className="relative aspect-4/5 overflow-hidden">
                       <img
                         src={product.image}
                         alt={product.name}
                         className="w-full h-full object-cover product-image"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-espresso/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute inset-0 bg-linear-to-t from-espresso/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                       {/* Hover overlay */}
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
@@ -327,7 +327,7 @@ export default function Hero() {
         <span className="font-body text-xs tracking-widest text-warm-gray uppercase">
           Scroll
         </span>
-        <div className="w-px h-12 bg-gradient-to-b from-warm-gray to-transparent" />
+        <div className="w-px h-12 bg-linear-to-b from-warm-gray to-transparent" />
       </div>
 
       {/* Product Detail Modal */}

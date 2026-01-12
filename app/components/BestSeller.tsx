@@ -155,7 +155,7 @@ export default function BestSeller() {
               </div>
 
               {/* Main Image */}
-              <div className="aspect-[4/5] md:aspect-[3/4] rounded-3xl overflow-hidden">
+              <div className="aspect-4/5 md:aspect-3/4 rounded-3xl overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=1200&h=1500&fit=crop"
                   alt="Ethiopia Yirgacheffe - Best Seller"

@@ -89,7 +89,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-100 flex items-center justify-center p-4">
       {/* Overlay */}
       <div
         ref={overlayRef}

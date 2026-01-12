@@ -112,7 +112,7 @@ export default function BrandStory() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image Side */}
           <div ref={imageRef} className="relative">
-            <div className="aspect-[4/5] rounded-3xl overflow-hidden">
+            <div className="aspect-4/5 rounded-3xl overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&h=1000&fit=crop"
                 alt="Our Story - Coffee Roasting"
@@ -125,7 +125,7 @@ export default function BrandStory() {
 
             {/* Floating badge */}
             <div className="absolute -bottom-4 -left-4 md:bottom-8 md:-left-8 bg-latte text-espresso p-6 rounded-2xl">
-              <span className="block font-heading text-4xl">2009</span>
+              <span className="block font-body text-4xl">2009</span>
               <span className="block font-body text-sm mt-1">ก่อตั้ง</span>
             </div>
           </div>
@@ -186,7 +186,7 @@ export default function BrandStory() {
               className="stat-card text-center p-6 md:p-8 bg-cream/5 rounded-2xl backdrop-blur-sm border border-cream/10"
             >
               <span
-                className="stat-number block font-heading text-4xl md:text-5xl text-latte"
+                className="stat-number block font-body text-4xl md:text-5xl text-latte"
                 data-target={stat.number}
                 data-suffix={stat.suffix}
               >
